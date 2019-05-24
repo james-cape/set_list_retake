@@ -13,4 +13,13 @@ class Cart
     @contents[song_id.to_s] ||= 0
     @contents[song_id.to_s] += 1
   end
+
+  def songs
+    song_and_quantity = {}
+    @contents.each do |song_id, quantity|
+      song = Song.find(song_id)
+      song_and_quantity[song] = quantity
+    end
+    song_and_quantity
+  end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get '/', to: 'welcome#index', as: :welcome
 
   resources :carts, only: [:create]
+  get '/cart', to: 'carts#show'
   # post '/carts', to: 'carts#add_song'
 
   resources :users, only: [:new, :create, :show]

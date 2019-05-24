@@ -14,4 +14,7 @@ class CartsController < ApplicationController
     flash[:message] = "You now have #{pluralize(session[:cart][@song.id.to_s], 'copy')} of #{@song.title} in your cart."
     redirect_to songs_path # Redirecting
   end
+
+  def show
+  end
 end
