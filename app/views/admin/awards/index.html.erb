@@ -3,5 +3,13 @@
 <% end %>
 
 <% if current_admin? %>
-  <%= button_to "Create a new award (enter award name): ", admin_awards_path, method: :post %>
+  <%= form_for @award, url: admin_awards_path, method: :post do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <%= f.submit "Create a new award" %>
+  <% end %>
+
+
 <% end %>

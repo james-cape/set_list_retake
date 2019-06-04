@@ -2,10 +2,13 @@ class Admin::AwardsController < Admin::BaseController
 
   def index
     @awards = Award.all
+    @award = Award.new
   end
 
   def create
-    # @award =
+  @award = Award.new(award_params)
+  @award.save
+  redirect_to admin_awards_path
   end
 
   private
