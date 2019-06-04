@@ -2,3 +2,8 @@
 <p>By: <%= @song.artist.name %></p>
 <p>Play Count: <%= @song.play_count %>
 <p>Length: <%= @song.length %>
+
+<h1>Awards for this song</h1>
+<% @song.awards.each do |award| %>
+  <%= award.name %>
+<% end %>
