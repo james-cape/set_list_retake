@@ -20,7 +20,7 @@ RSpec.describe "awards index page", type: :feature do
 
     click_button "Create a new award"
     within "#awards-list" do
-      expect(page).to have_content(@new_award_name)
+      expect(page).to have_link(@new_award_name)
     end
   end
 
@@ -28,10 +28,23 @@ RSpec.describe "awards index page", type: :feature do
     visit awards_path
 
     expect(page).to_not have_button("Create a new award")
-save_and_open_page
+  end
+
+  it "shows visitor existing awards" do
+    visit awards_path
+
     within "#awards-list" do
-      expect(page).to have_content(@award_1.name)
-      expect(page).to have_content(@award_2.name)
+      expect(page).to have_link(@award_1.name)
+      expect(page).to have_link(@award_2.name)
+    end
+  end
+
+  it "shows visitor award names as links to award show pages" do
+    visit awards_path
+
+    within "#awards-list" do
+      expect(page).to have_link(@award_1.name)
+      expect(page).to have_link(@award_2.name)
     end
   end
 end

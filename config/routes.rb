@@ -35,5 +35,5 @@ Rails.application.routes.draw do
     resources :awards, only: [:create]
   end
 
-  resources :awards, only: [:index]
+  resources :awards, only: [:index, :show]
 end

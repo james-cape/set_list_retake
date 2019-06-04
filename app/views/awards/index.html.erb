@@ -1,7 +1,7 @@
 <section id="awards-list">
   <% @awards.each do |award| %>
     <section id="award-<%= award.id %>">
-      <h2><%= award.name %></h2>
+      <h2><%= link_to "#{award.name}", award_path(award.id), method: :get %></h2>
     </section>
   <% end %>
 </section>
