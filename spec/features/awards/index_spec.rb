@@ -12,20 +12,26 @@ RSpec.describe "awards index page", type: :feature do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin_1)
 
-    visit admin_awards_path
+    visit awards_path
 
     expect(page).to have_button("Create a new award")
 
     fill_in :Name, with: @new_award_name
 
     click_button "Create a new award"
-
-    expect(page).to have_content(@new_award_name)
+    within "#awards-list" do
+      expect(page).to have_content(@new_award_name)
+    end
   end
 
   it "shows visitor no button which creates new award" do
-    visit admin_awards_path
+    visit awards_path
 
     expect(page).to_not have_button("Create a new award")
+save_and_open_page
+    within "#awards-list" do
+      expect(page).to have_content(@award_1.name)
+      expect(page).to have_content(@award_2.name)
+    end
   end
 end
