@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190521161602) do
+ActiveRecord::Schema.define(version: 20190604200844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20190521161602) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "playlist_songs", force: :cascade do |t|
@@ -32,6 +36,13 @@ ActiveRecord::Schema.define(version: 20190521161602) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "song_awards", force: :cascade do |t|
+    t.bigint "song_id"
+    t.bigint "award_id"
+    t.index ["award_id"], name: "index_song_awards_on_award_id"
+    t.index ["song_id"], name: "index_song_awards_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -54,5 +65,7 @@ ActiveRecord::Schema.define(version: 20190521161602) do
 
   add_foreign_key "playlist_songs", "playlists"
   add_foreign_key "playlist_songs", "songs"
+  add_foreign_key "song_awards", "awards"
+  add_foreign_key "song_awards", "songs"
   add_foreign_key "songs", "artists"
 end

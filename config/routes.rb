@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories, only: :index
     resources :songs, only: :destroy
+    resources :awards, only: [:index, :create]
   end
 end
