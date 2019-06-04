@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "awards index page", type: :feature do
   before :each do
+    @artist = create(:artist)
+    @song_1, @song_2, @song_3 = create_list(:song, 3, artist: @artist)
+
     @award_1 = Award.create(name: "Best lighting")
     @award_2 = Award.create(name: "Best vocals")
     @new_award_name = "New Award"
@@ -46,5 +49,12 @@ RSpec.describe "awards index page", type: :feature do
       expect(page).to have_link(@award_1.name)
       expect(page).to have_link(@award_2.name)
     end
+
+    click_link "#{@award_1.name}"
+
+    expect(current_path).to eq(award_path(@award_1.id))
+
+    expect(page).to have_content(@award_1.name)
+    expect(page).to_not have_content(@award_2.name)
   end
 end
