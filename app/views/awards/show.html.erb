@@ -2,4 +2,6 @@
 
 <h2><%= @award.name %></h2>
 
-<%  %>
+<% @award.songs.each do |song| %>
+<%= song.title %>
+<% end %>
